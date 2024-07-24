@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Search</title>
+</head>
+<body>
+<h1>Job Search</h1>
+<label for="location">Location:</label>
+<input type="text" id="location">
+<label for="title">Job Title:</label>
+<input type="text" id="title">
+<button onclick="ricercaOnClick()">Search</button>
+<ul id="results"></ul>
+
+<script src="main.js"></script>
+<script>
+    // Funzione chiamata al click del bottone
+    const ricercaOnClick = () => {
+        let titleValue = document.querySelector("input#title").value;
+        let locValue = document.querySelector("input#location").value;
+        let ul = document.querySelector("ul#results");
+        ul.innerHTML = ''; // Pulisce i risultati precedenti
+        const res = cercaLavori(locValue, titleValue);
+        for (let i = 0; i < res.results.length; i++) {
+            const lavoro = res.results[i];
+            ul.innerHTML += `<li>${lavoro.title} @ ${lavoro.location}</li>`;
+        }
+    };
+</script>
+</body>
+</html>
